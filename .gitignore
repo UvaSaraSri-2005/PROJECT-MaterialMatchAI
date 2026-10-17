@@ -1,0 +1,30 @@
+# Secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+# Java / Spring Boot
+**/target/
+*.class
+# IDE
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+# Expo / React Native
+mobile-app/node_modules/
+mobile-app/.expo/
+mobile-app/dist/
+mobile-app/web-build/
+# OS files
+.DS_Store
+Thumbs.db
+
+# Keep mobile app source; ignore its nested Git metadata
+mobile-app/.git/
+**/.expo/
+**/node_modules/
+**/dist/

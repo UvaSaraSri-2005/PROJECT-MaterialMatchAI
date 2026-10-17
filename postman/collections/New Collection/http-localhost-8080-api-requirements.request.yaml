@@ -1,0 +1,25 @@
+$kind: http-request
+name: http://localhost:8080/api/requirements
+description: ""
+url: http://localhost:8080/api/requirements
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"industryId\": \"6ac655406b09febc0f6c7931\",\r
+
+    \    \"materialName\": \"Cotton Textile Waste\",\r
+
+    \    \"category\": \"Textile\",\r
+
+    \    \"quantity\": 300,\r
+
+    \    \"unit\": \"kg\",\r
+
+    \    \"location\": \"Madurai\",\r
+
+    \    \"description\": \"Required as raw material for recycled packaging production.\"\r
+
+    }"
+order: 4500831781382599

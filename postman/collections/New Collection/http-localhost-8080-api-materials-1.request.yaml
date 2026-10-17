@@ -1,0 +1,6 @@
+$kind: http-request
+name: http://localhost:8080/api/materials
+description: ""
+url: http://localhost:8080/api/materials
+method: GET
+order: 4500724005078580

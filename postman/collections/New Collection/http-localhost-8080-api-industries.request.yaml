@@ -1,0 +1,6 @@
+$kind: http-request
+name: http://localhost:8080/api/industries
+description: ""
+url: http://localhost:8080/api/industries
+method: GET
+order: 4268990217127620

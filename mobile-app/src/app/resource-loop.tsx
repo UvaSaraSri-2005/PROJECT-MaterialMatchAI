@@ -1,0 +1,13 @@
+import { useState } from 'react';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { getResourceLoop, type Recommendation } from '@/lib/api';
+export default function ResourceLoopScreen()
+{
+    const[name,setName]=useState('');const[category,setCategory]=useState('');const[items,setItems]=useState<Recommendation[]>([]);const[error,setError]=useState('');const[loading,setLoading]=useState(false);const search=async()=>{if(!name.trim()||!category.trim()){setError('Enter both a material name and category.');return;}setLoading(true);setError('');try{setItems(await getResourceLoop(name,category));}catch(e){setError(e instanceof Error?e.message:'Unable to load recommendations.');}finally{setLoading(false);}};return <SafeAreaView style={s.safe}><ScrollView contentContainerStyle={s.page}><Text style={s.title}>Resource Loop</Text><Text style={s.muted}>Recommendations are rule-based indications from the current backend. Confirm contamination, regulation, and processing requirements before use.</Text><TextInput style={s.input} value={name} onChangeText={setName} placeholder="Material name"/><TextInput style={s.input} value={category} onChangeText={setCategory} placeholder="Category"/><TouchableOpacity style={s.button} onPress={search}>{loading?<ActivityIndicator color="#fff"/>:<Text style={s.buttonText}>Get recommendations</Text>}</TouchableOpacity>{error?<Text style={s.error}>{error}</Text>:null}{items.map((item,index)=><View key={index} style={s.card}><Text style={s.name}>{item.recommendedUse}</Text>
+<Text style={s.detail}>{item.targetIndustry}</Text>
+<Text style={s.detail}>{item.reason}</Text>
+<Text style={s.detail}>Processing: {item.processingRequired}</Text>
+<Text style={s.detail}>Suitability: {item.suitability}</Text>
+<Text style={s.detail}>Safety: {item.safetyNote}</Text><Text style={s.detail}>{item.reason}</Text></View>)}</ScrollView></SafeAreaView>}
+const s=StyleSheet.create({safe:{flex:1,backgroundColor:'#F5F8F2'},page:{padding:22},title:{fontSize:28,fontWeight:'800',color:'#193B28'},muted:{color:'#496451',lineHeight:20,marginTop:8,marginBottom:16},input:{backgroundColor:'#fff',borderWidth:1,borderColor:'#DCE5DA',borderRadius:12,padding:14,marginTop:10},button:{backgroundColor:'#237A45',padding:16,alignItems:'center',borderRadius:13,marginTop:14,minHeight:52},buttonText:{color:'#fff',fontWeight:'800'},error:{color:'#8D2B2B',marginTop:14},card:{backgroundColor:'#fff',borderRadius:14,padding:15,marginTop:15},name:{fontWeight:'800',color:'#193B28'},detail:{color:'#496451',marginTop:5,lineHeight:19,fontSize:13}});

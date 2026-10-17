@@ -1,0 +1,31 @@
+$kind: http-request
+name: http://localhost:8080/api/materials
+description: new
+url: http://localhost:8080/api/materials
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"industryId\": \"6ac655406b09febc0f6c7931\",\r
+
+    \    \"materialName\": \"Cotton Textile Waste\",\r
+
+    \    \"category\": \"Textile\",\r
+
+    \    \"quantity\": 500,\r
+
+    \    \"unit\": \"kg\",\r
+
+    \    \"location\": \"Madurai\",\r
+
+    \    \"latitude\": 9.9252,\r
+
+    \    \"longitude\": 78.1198,\r
+
+    \    \"moisture\": 8,\r
+
+    \    \"description\": \"Cotton fabric cutting waste generated during garment production.\"\r
+
+    }"
+order: 4502559476227274
