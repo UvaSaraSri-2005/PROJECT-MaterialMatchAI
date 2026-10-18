@@ -394,8 +394,17 @@ export default function FindMaterialsScreen() {
               <Text style={styles.sectionTitle}>Request Exchange</Text>
 
               <Text style={styles.detail}>
-                Enter the quantity you need. The supplier's listed price
-                cannot be changed.
+                Enter how much material you need. The supplier's listed
+                price cannot be changed.
+              </Text>
+
+              <Text style={styles.inputLabel}>
+                Quantity You Need *
+              </Text>
+
+              <Text style={styles.inputHint}>
+                Enter the amount you want to buy. Available: {item.quantity}{' '}
+                {item.unit}.
               </Text>
 
               <TextInput
@@ -408,9 +417,10 @@ export default function FindMaterialsScreen() {
                   }))
                 }
                 keyboardType="decimal-pad"
-                placeholder={`Quantity in ${item.unit}`}
+                placeholder={`e.g., 100 ${item.unit}`}
                 placeholderTextColor="#7A8B7D"
                 editable={requestingId !== item.id}
+                accessibilityLabel={`Quantity you need in ${item.unit}`}
               />
 
               {isOwnListing ? (
@@ -656,6 +666,18 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginTop: 12,
   },
+  inputLabel: {
+    color: '#294534',
+    fontSize: 13,
+    fontWeight: '700',
+    marginTop: 12,
+  },
+  inputHint: {
+    color: '#718075',
+    fontSize: 12,
+    lineHeight: 18,
+    marginTop: 5,
+  },
   quantityInput: {
     borderWidth: 1,
     borderColor: '#B8D5BE',
@@ -665,7 +687,7 @@ const styles = StyleSheet.create({
     paddingVertical: 11,
     color: '#193B28',
     fontSize: 15,
-    marginTop: 12,
+    marginTop: 10,
   },
   requestButton: {
     backgroundColor: '#176B36',

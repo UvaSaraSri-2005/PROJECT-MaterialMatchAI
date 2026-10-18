@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "mobile-app",
+    "name": "MaterialMatch AI",
     "slug": "mobile-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -11,7 +11,9 @@
       "icon": "./assets/expo.icon"
     },
     "android": {
+      "package": "com.materialmatchai.app",
       "adaptiveIcon": {
+        
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
@@ -40,7 +42,7 @@
       "reactCompiler": true
     },
     "extra": {
-      "apiBaseUrl": "",
+      "apiBaseUrl": "https://materialmatch-ai-backend.onrender.com",
       "router": {},
       "eas": {
         "projectId": "04e85073-5a9a-4e5d-b12f-0f6f010da389"
