@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import {
   ActivityIndicator,
@@ -11,18 +10,15 @@ import {
 } from 'react-native';
 import { router } from 'expo-router';
 import { loginIndustry } from '@/lib/api';
-
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-
   async function handleLogin() {
     if (!email.trim() || !password) {
-      Alert.alert('Missing details', 'Enter your email and password.');
+      Alert.alert('Missing details', 'Enter your registered email and password.');
       return;
     }
-
     try {
       setLoading(true);
       await loginIndustry(email.trim().toLowerCase(), password);
@@ -36,33 +32,35 @@ export default function LoginScreen() {
       setLoading(false);
     }
   }
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome Back</Text>
-      <Text style={styles.subtitle}>Sign in to your industry account</Text>
-
+      <Text style={styles.subtitle}>
+        Sign in using your registered industry account.
+      </Text>
+      <Text style={styles.label}>Industry Email *</Text>
       <TextInput
         style={styles.input}
-        placeholder="Industry email"
+        placeholder="Enter your registered email"
+        placeholderTextColor="#84928A"
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
         autoCapitalize="none"
         autoCorrect={false}
       />
-
+      <Text style={styles.label}>Password *</Text>
       <TextInput
         style={styles.input}
-        placeholder="Password"
+        placeholder="Enter your password"
+        placeholderTextColor="#84928A"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
         autoCapitalize="none"
       />
-
       <TouchableOpacity
-        style={styles.button}
+        style={[styles.button, loading && styles.buttonDisabled]}
         onPress={handleLogin}
         disabled={loading}
       >
@@ -72,16 +70,12 @@ export default function LoginScreen() {
           <Text style={styles.buttonText}>Login</Text>
         )}
       </TouchableOpacity>
-
       <TouchableOpacity onPress={() => router.push('/register')}>
-        <Text style={styles.link}>
-          New industry? Create an account
-        </Text>
+        <Text style={styles.link}>New industry? Create an account</Text>
       </TouchableOpacity>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -98,23 +92,35 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 15,
     color: '#64748B',
-    marginBottom: 28,
+    marginBottom: 24,
+    lineHeight: 22,
+  },
+  label: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#174C37',
+    marginBottom: 7,
   },
   input: {
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
     borderColor: '#D5E2DA',
     borderRadius: 12,
-    padding: 15,
-    marginBottom: 14,
+    paddingHorizontal: 15,
+    paddingVertical: 14,
+    marginBottom: 18,
     fontSize: 16,
+    color: '#1F2937',
   },
   button: {
     backgroundColor: '#198754',
     padding: 16,
     borderRadius: 12,
     alignItems: 'center',
-    marginTop: 6,
+    marginTop: 4,
+  },
+  buttonDisabled: {
+    opacity: 0.7,
   },
   buttonText: {
     color: '#FFFFFF',
